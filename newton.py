@@ -11,14 +11,14 @@ def newton(f, df, p0, tol, N):
     print(f"El método fracasó después de N iteraciones, N = {N}")
     return None, i-1
 
-def f_simple(x):
+def f(x):
     # Ejemplo simple: raíz en sqrt(2) ≈ 1.4142...
-    return x**2 * math.sin(x) - 1
+    return 1000/x * (1 - (1 + x)**-360) -135000
 
 def df_simple(x):
-    return 2*x*math.sin(x) + x**2*math.cos(x)
+    return -1000/x**2 * (1 - (1 + x)**-360) + 360000 * (1 + x)**-361
 
-prueba, iteraciones = newton(f_simple, df_simple, 1.5, 1e-5, 25)
+prueba, iteraciones = newton(f, df_simple, 0.0005, 10**-5, 10000)
 print(f"Raíz aproximada: {prueba}")
 print(f"Número de iteraciones: {iteraciones}")
 
